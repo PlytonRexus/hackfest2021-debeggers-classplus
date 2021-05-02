@@ -23,7 +23,7 @@ async function detectFaces(imagePath) {
   try {
     const stdout = await execShellCommand(cmd);
     stdout.match(regex).forEach(val => {
-      result.push(parseInt(t))
+      result.push(parseInt(val))
     })
     return result;
   } catch (e) {
@@ -33,8 +33,10 @@ async function detectFaces(imagePath) {
 
 async function matchFaceAgainst(testImagePath, knownImagePath, admissionNumber) {
   const result = [];
+  const recogPath = path.join(__dirname, '../py/recog.py')
   const sheetPath = path.join(__dirname, '..', 'temp/csv', 'sheet.csv')
-  const cmd = 'python3 ../py/recog.py '
+  const cmd = 'python3  '
+    + recogPath + ' '
     + knownImagePath + ' '
     + testImagePath + ' '
     + sheetPath + ' '

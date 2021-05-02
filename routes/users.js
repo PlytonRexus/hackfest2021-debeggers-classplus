@@ -57,7 +57,7 @@ router.post('/check', upload.single("image"), async function(req, res) {
       result = await detectFaces(req.currentFilename)
     } catch (error) {
       res.status(500).json({
-        error: 'Error in detecting faces'
+        error: 'Error in detecting faces' + error
       })
       return
     }
@@ -67,10 +67,10 @@ router.post('/check', upload.single("image"), async function(req, res) {
       if (result[0] == 1) {
         let recResult = await matchFaceAgainst(
           req.currentFilename,
-          path.join(__dirname, '../temp/faces', admissionNumber + '.jpg'),
+          path.join(__dirname, '../temp/faces', body.admissionNumber + '.jpg'),
           body.admissionNumber)
         res.json({
-          faceMatched: recResult === 1
+          faceMatched: recResult[0] === 1
         })
       } else {
         res.status(400).json({
