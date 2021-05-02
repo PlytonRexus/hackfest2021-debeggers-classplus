@@ -11,7 +11,9 @@ def fun(a):
   if len(face_locations)>1:
     return 2
 
+# def fun(a):
+#     return 1
+
 if __name__ == "__main__":
     a = str(sys.argv[1])
     print(fun(a))
-    
