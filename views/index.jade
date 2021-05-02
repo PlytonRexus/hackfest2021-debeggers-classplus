@@ -2,4 +2,19 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Upload your file below
+  form(action="/users/check", method="post", target="result", enctype="multipart/form-data")
+    input(type="file", name="image", required=true)
+    &emsp;
+    input(type="text", name="admissionNumber", placeholder="Admission Number", required=true)
+    br
+    br
+    input(type="submit", value="Mark attendance")
+
+  br
+  br
+  hr
+  br
+
+  h1= "Result"
+  iframe(src="", frameborder="0", name="result", width="70%")
